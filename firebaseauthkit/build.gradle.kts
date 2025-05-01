@@ -6,6 +6,7 @@ plugins {
 //    id("com.google.gms.google-services") //TODO Add this only in the host app's build.gradle(.kts)
     id("maven-publish")
 }
+
 val localProperties = Properties().apply {
     load(File(rootProject.projectDir, "local.properties").inputStream())
 }
@@ -18,14 +19,24 @@ afterEvaluate {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-
                 groupId = "io.github.Sunbekova"
                 artifactId = "firebaseauthkit"
-                version = "2.0.0"
+                version = "2.0.1"
+            }
+        }
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/Sunbekova/firebaseauthkit")
+                credentials {
+                    username = mavenUsername
+                    password = mavenPassword
+                }
             }
         }
     }
 }
+
 
 android {
     namespace = "com.example.firebasev1"
