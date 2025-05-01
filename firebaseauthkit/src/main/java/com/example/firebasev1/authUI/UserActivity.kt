@@ -1,21 +1,30 @@
-package com.example.firebasev1
+package com.example.firebasev1.authUI
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.firebasev1.databinding.ActivityMainBinding
+import com.example.firebasev1.databinding.ActivityUserBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+internal class UserActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityUserBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Check if the user is logged in or not
+        val user = Firebase.auth.currentUser
+        if (user == null) {
+            // If user is not logged in, redirect to Login activity
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+            finish()  // Finish MainActivity to prevent user from going back
+        }
 
         binding.btnLogout.setOnClickListener {
             Firebase.auth.signOut()

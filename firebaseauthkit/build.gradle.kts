@@ -1,7 +1,30 @@
+import java.util.Properties
+
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.library")
     alias(libs.plugins.kotlin.android)
-    id("com.google.gms.google-services")
+//    id("com.google.gms.google-services") //TODO Add this only in the host app's build.gradle(.kts)
+    id("maven-publish")
+}
+val localProperties = Properties().apply {
+    load(File(rootProject.projectDir, "local.properties").inputStream())
+}
+val mavenUsername: String = localProperties["mavenUsername"] as String
+val mavenPassword: String = localProperties["mavenPassword"] as String
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+
+                groupId = "io.github.Sunbekova"
+                artifactId = "firebaseauthkit"
+                version = "2.0.0"
+            }
+        }
+    }
 }
 
 android {
@@ -9,13 +32,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.firebasev1"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -28,11 +45,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         viewBinding = true

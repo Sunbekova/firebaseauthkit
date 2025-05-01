@@ -5,19 +5,29 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
+    tools:context=".authUI.Register"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/LoginTitle"
+        android:id="@+id/RegisterTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Register"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:layout_margin="32dp"/>
+        android:layout_margin="32dp" />
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Full Name"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:id="@+id/etEmail"
@@ -37,32 +47,32 @@
         android:inputType="textPassword"
         android:padding="12dp"
         android:background="@android:drawable/editbox_background_normal"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:id="@+id/tvForgotPassword"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/etConfirmPassword"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Forgot Password?"
-        android:textColor="#6200EE"
-        android:textSize="14sp"
-        android:layout_gravity="end"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="@android:drawable/editbox_background_normal"
         android:layout_marginBottom="24dp"/>
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Register"
         android:backgroundTint="#6200EE"
         android:textColor="#FFFFFF"
         android:padding="14dp" />
 
     <TextView
-        android:id="@+id/tvRegisterRedirect"
+        android:id="@+id/LoginRedirect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't have an account? Register here"
+        android:text="Already have an account? Login"
         android:textColor="#6200EE"
         android:layout_marginTop="24dp" />
 
