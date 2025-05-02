@@ -151,7 +151,7 @@ buildscript {
 
 ---
 
-##Screens
+## Screens
 
 - LoginActivity — Email/password login
 - RegisterActivity — Create account
