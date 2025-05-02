@@ -24,6 +24,9 @@ internal class UserActivity : AppCompatActivity() {
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
             finish()  // Finish MainActivity to prevent user from going back
+        }else {
+            // Show welcome message
+            binding.tvWelcome.text = "Welcome, ${user.email ?: "User"}"
         }
 
         binding.btnLogout.setOnClickListener {
